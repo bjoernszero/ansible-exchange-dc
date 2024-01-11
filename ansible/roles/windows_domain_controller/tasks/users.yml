@@ -1,0 +1,13 @@
+---
+
+- name: Create domain Users
+  win_domain_user:
+    name: '{{ user.name }}'
+    upn: '{{ user.name }}@{{ windows_domain_controller_info.dns_domain_name }}'
+    description: '{{ user.name }} Domain User'
+    password: '{{ user.password }}'
+    password_never_expires: yes
+    state: present
+  loop: "{{ windows_domain_controller_info.domain_users }}"
+  loop_control:
+    loop_var: user

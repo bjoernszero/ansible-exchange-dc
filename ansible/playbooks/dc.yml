@@ -1,0 +1,30 @@
+- hosts: dc
+  gather_facts: True
+
+  vars_files:
+    - ../vars/vars.yml
+
+  roles:
+    - name: common
+
+    - name: windows_dns_server
+
+    - name: windows_domain_controller
+
+    - name: sysmon
+
+    - name: adcs-enrollment
+
+    - name: adcs-winrm
+      vars:
+        man_adcs_winrm_is_dc: true
+        man_adcs_winrm_issuer: CN={{ windows_domain_controller_info.dns_domain_name.split(".")[0] }}-WINDOWS-2022-DC-CA, DC={{ windows_domain_controller_info.dns_domain_name.split(".") | join(", DC=") }}
+
+  post_tasks:
+    - name: Store certificate chain PEM
+      vars:
+        ansible_connection: local
+      copy:
+        content: "{{ out_adcs_enrollment_chain_thumbprint }}"
+        dest: ../../certs/ca_chain.pem
+      delegate_to: localhost

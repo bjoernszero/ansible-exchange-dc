@@ -1,0 +1,35 @@
+require 'open3'
+
+Vagrant.configure("2") do |config|
+  config.vm.define "exchg" do |config|
+    config.vm.box = "jborean93/WindowsServer2019"
+    config.vm.hostname = "windows-2019-exchg"
+    config.vm.network :private_network, ip: "192.168.56.15", gateway: "192.168.56.1"
+
+    config.vm.provision "ansible" do |ansible|
+        ansible.playbook = "../ansible/playbooks/exchg.yml"
+        ansible.config_file = "../ansible/ansible.cfg"
+        ansible.compatibility_mode = "2.0"
+    end
+
+
+    config.vm.provider "virtualbox" do |vb, override|
+      vb.gui = true
+      vb.name = "windows-2019-exchg"
+      vb.default_nic_type = "82545EM"
+      vb.customize ["modifyvm", :id, "--memory", 4096]
+      vb.customize ["modifyvm", :id, "--cpus", 2]
+      vb.customize ["modifyvm", :id, "--vram", "32"]
+      vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+      vb.customize ["setextradata", "global", "GUI/SuppressMessages", "all" ]
+      vb.customize ["storageattach", 
+                    :id, 
+                    "--storagectl", "SATA", 
+                    "--port", "1", 
+                    "--device", "0", 
+                    "--type", "dvddrive", 
+                    "--medium", "../iso/ExchangeServer2019-x64-CU12.ISO"]
+    end
+
+  end
+end

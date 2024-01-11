@@ -1,0 +1,53 @@
+# Ansible (Windows specific)
+ansible_connection: psrp
+ansible_psrp_cert_validation: ignore
+ansible_psrp_auth: basic
+
+# Apps
+sysmon: false
+stream: true
+enterprise_security: true
+
+# Variables for Sysmon
+win_temp_dir: 'c:\Program Files\ansible'
+win_log_dir: 'c:\ProgramData\ansible\log'
+
+win_sysmon: true
+## as sysmon link is updated and hash change, chocolatey install can fails
+## ansible win_get_url currently does not support checksum option
+win_sysmon_direct: true
+win_sysmon_url: 'https://download.sysinternals.com/files/Sysmon.zip'
+win_sysmon_sha256: '698c2119069e0f2fa16a572b9dfafabc69bf86ce5a8471628e6527d7e443bbbe'
+win_sysmon_template: SysmonConfig-Verbose.xml
+
+win_eventlog_maxsize: 315801600
+win_eventlog_retention: 0
+win_sysmon_eventlog_channels:
+  - Microsoft-Windows-Sysmon/Operational
+
+# Domain Controller
+windows_domain_controller_info:
+  ipv4: 192.168.56.5
+  dns_domain_name: c4bag.local
+  domain_admin_password: a31557c9-4d4f
+  domain_admin_user: administrator@c4bag.local
+  safe_mode_password: a31557c9-4d4f
+  state: domain_controller
+  domain_users:
+    - name: saerge
+      password: ergDnerogh663!$$99eegeQ
+    - name: tzktzzutzut
+      password: tzktzzuGtzutrogh663!$$99eegeDF
+    - name: erzrtjrghmgg
+      password: erzrtjDrghmggh663!$$99eegeS
+    - name: zukjrthhll
+      password: ergne5S68zukj$!rthhll99eegeV
+    - name: oopsoerge
+      password: ergn!ooGpsoerge!$$9eeLLW
+
+microsoft_exchange_server_info:
+  version: 2019
+  ipv4: 192.168.56.15
+  iso_image: ExchangeServer2019-x64-CU12.ISO
+
+
