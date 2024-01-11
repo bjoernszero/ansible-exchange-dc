@@ -1,3 +1,4 @@
-certs/*
-iso/*
+certs/*.pem
+iso/*.iso
+iso/*.ISO
 **/.vagrant
