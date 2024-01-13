@@ -15,8 +15,7 @@
 
     - name: adcs-winrm
       vars:
-        man_adcs_winrm_is_dc: true
-        man_adcs_winrm_issuer: CN={{ windows_domain_controller_info.dns_domain_name.split(".")[0] }}-WINDOWS-2022-DC-CA, DC={{ windows_domain_controller_info.dns_domain_name.split(".") | join(", DC=") }}
+        winrm_is_dc: true
 
   post_tasks:
     - name: Store certificate chain PEM

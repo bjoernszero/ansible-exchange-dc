@@ -1,16 +1,16 @@
 # Ansible Settings
 ansible_connection: psrp
-ansible_psrp_cert_validation: ignore
 ansible_psrp_auth: basic
+ansible_psrp_cert_validation: ignore
 
 # Domain Controller
 windows_domain_controller_info:
   ipv4: 192.168.121.121
+  state: domain_controller
   dns_domain_name: c4bag.local
+  safe_mode_password: a31557c9-4d4f
   domain_admin_password: a31557c9-4d4f
   domain_admin_user: administrator@c4bag.local
-  safe_mode_password: a31557c9-4d4f
-  state: domain_controller
   domain_users:
     - name: saerge
       password: ergDnerogh663!$$99eegeQ

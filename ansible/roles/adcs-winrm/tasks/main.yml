@@ -2,20 +2,24 @@
 - name: assert mandatory values are set
   assert:
     that:
-    - man_adcs_winrm_is_dc is defined
-    - man_adcs_winrm_issuer is defined
+    - winrm_is_dc is defined
 
 - name: refresh the local GPO to ensure we have the latest certs
   win_command: gpupdate /force
 
-- debug:
-    var: man_adcs_winrm_issuer
+- name: set winrm_issuer fact
+  set_fact:
+    winrm_issuer: 'CN={{ windows_domain_controller_info.dns_domain_name.split(".")[0] }}-WINDOWS-2022-DC-CA, DC={{ windows_domain_controller_info.dns_domain_name.split(".") | join(", DC=") }}'
+
+- name: show winrm_issuer fact
+  debug:
+    var: winrm_issuer
 
 # the logic to get the cert thumbprint differs from the DCs and other hosts
 - name: get certificate thumbprint to use for new WSMan listener on the domain controller
   win_shell: |
     (Get-ChildItem -Path Cert:\LocalMachine\My\ | Where-Object {
-        $_.Issuer -eq "{{ man_adcs_winrm_issuer }}" {{ (man_adcs_winrm_is_dc | bool) | ternary('-and "Client Authentication" -in ($_.EnhancedKeyUsageList).FriendlyName -and "Server Authentication" -in ($_.EnhancedKeyUsageList).FriendlyName -and "KDC Authentication" -notin ($_.EnhancedKeyUsageList).FriendlyName', '') }}
+        $_.Issuer -eq "{{ winrm_issuer }}" {{ (winrm_is_dc | bool) | ternary('-and "Client Authentication" -in ($_.EnhancedKeyUsageList).FriendlyName -and "Server Authentication" -in ($_.EnhancedKeyUsageList).FriendlyName -and "KDC Authentication" -notin ($_.EnhancedKeyUsageList).FriendlyName', '') }}
     }).Thumbprint
   register: pri_adcs_winrm_enrolled_cert_thumbprint
   changed_when: no
