@@ -37,13 +37,13 @@ Exchange Server 2019 ISO
 ## 2. Bring up a windows domain controller
 
 ```
-cd dc
+cd vagrant/domain
 vagrant up
 ```
 
 ## 3. Bring up an exchange 2019 server
 
 ```
-cd ../ex
+cd ../exchange
 vagrant up
 ```
