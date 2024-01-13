@@ -9,7 +9,7 @@
 
 - name: set winrm_issuer fact
   set_fact:
-    winrm_issuer: 'CN={{ windows_domain_controller_info.dns_domain_name.split(".")[0] }}-WINDOWS-2022-DC-CA, DC={{ windows_domain_controller_info.dns_domain_name.split(".") | join(", DC=") }}'
+    winrm_issuer: 'CN={{ windows_domain_controller_info.domain_name.split(".")[0] }}-WINDOWS-2022-DC-CA, DC={{ windows_domain_controller_info.domain_name.split(".") | join(", DC=") }}'
 
 - name: show winrm_issuer fact
   debug:

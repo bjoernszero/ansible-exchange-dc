@@ -40,23 +40,23 @@ export PATH="$PATH:/mnt/c/Program\ Files/Oracle/VirtualBox"
 Exchange Server 2019 ISO
 
 - Download the Iso Image from Microsoft and copy to ./iso/
-- Adjust the filename of the ISO image in ./exchg/Vagrantfile
+- Adjust the path to the downloaded the ISO image in ./ansible/vars/vars.yml
 
-## 2. Bring up a windows domain controller
+## 2. Create the domain controller
 
 ```
 cd vagrant/domain
 vagrant up
 ```
 
-## 3. Bring up an exchange 2019 server
+## 3. Create the exchange server
 
 ```
 cd ../exchange
 vagrant up
 ```
 
-## 4. Bring up an Office Client
+## 4. Create an Office365 machine
 
 ```
 cd ../client

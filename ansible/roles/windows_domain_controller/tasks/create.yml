@@ -20,7 +20,7 @@
 
 - name: Creating a windows domain
   win_domain:
-    dns_domain_name: "{{ windows_domain_controller_info['dns_domain_name'] }}"
+    dns_domain_name: "{{ windows_domain_controller_info['domain_name'] }}"
     safe_mode_password: "{{ windows_domain_controller_info['safe_mode_password'] }}"
 
 - name: Setting DNS Servers
@@ -34,11 +34,11 @@
 
 - name: Managing Domain Controller Membership
   win_domain_controller:
-    dns_domain_name: "{{ windows_domain_controller_info['dns_domain_name'] }}"
+    dns_domain_name: "{{ windows_domain_controller_info['domain_name'] }}"
     domain_admin_user: "{{ windows_domain_controller_info['domain_admin_user'] }}"
     domain_admin_password: "{{ windows_domain_controller_info['domain_admin_password'] }}"
     safe_mode_password: "{{ windows_domain_controller_info['safe_mode_password'] }}"
-    state: "{{ windows_domain_controller_info['state'] }}"
+    state: domain_controller
   register: _windows_domain_controller
 
 - name: Test out domain user that was created

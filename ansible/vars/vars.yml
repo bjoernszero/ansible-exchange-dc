@@ -5,23 +5,30 @@ ansible_psrp_cert_validation: ignore
 
 # Domain Controller
 windows_domain_controller_info:
-  ipv4: 192.168.121.121
-  state: domain_controller
-  dns_domain_name: c4bag.local
+  ipv4: 192.168.121.68
+
   safe_mode_password: a31557c9-4d4f
+
+  domain_name: c4bag.local
   domain_admin_password: a31557c9-4d4f
   domain_admin_user: administrator@c4bag.local
+
+  # Groups assigned to all domain_users
+  domain_users_default_groups:
+    - Domain Users
+    - Remote Desktop Users
+    - Remote Management Users
+  
+  # Password for domain users
+  domain_users_password: 4rr89Ts1-889a
+  
+  # Domain users to create
   domain_users:
-    - name: saerge
-      password: ergDnerogh663!$$99eegeQ
-    - name: tzktzzutzut
-      password: tzktzzuGtzutrogh663!$$99eegeDF
-    - name: erzrtjrghmgg
-      password: erzrtjDrghmggh663!$$99eegeS
-    - name: zukjrthhll
-      password: ergne5S68zukj$!rthhll99eegeV
-    - name: oopsoerge
-      password: ergn!ooGpsoerge!$$9eeLLW
+    - saerge
+    - tzktzzutzut
+    - erzrtjrghmgg
+    - zukjrthhll
+    - oopsoerge
 
 # Exchange Server
 microsoft_exchange_server_info:
