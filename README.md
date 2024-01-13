@@ -1,4 +1,4 @@
-# Ansible playbook and roles for setting up an Exchange Server 2019 and Windows Domain Controller
+# Ansible + Vagrant project for setting up a Windows Domain Controller, Exchange Server, Office365 Client
 
 A example project to setup a Windows Domain Controller and Exchange Server under WSL2/Virtualbox using Vagrant + Ansible
 
