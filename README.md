@@ -1,8 +1,8 @@
-# Ansible + Vagrant project for setting up a Windows Domain Controller, Exchange Server, Office365 Client
+# Ansible + Vagrant domain controller, exchange server, Office365 client
 
 A example project to setup a Windows Domain Controller and Exchange Server under WSL2/Virtualbox using Vagrant + Ansible
 
-# Getting Started
+# Getting started
 
 In order to run this project it is required to store the project files on a windows file-system accessible to both WSL2 and the Windows Host, i.e. /mnt/c/Temp. Copy the file contents to any such location and adjust the VAGRANT_WSL_WINDOWS_ACCESS_USER_HOME_PATH environment variable acordingly.
 
