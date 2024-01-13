@@ -1,4 +1,4 @@
-- hosts: exchg
+- hosts: ex
   gather_facts: True
 
   vars_files:

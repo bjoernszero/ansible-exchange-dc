@@ -11,8 +11,6 @@
 
     - name: windows_domain_controller
 
-    - name: sysmon
-
     - name: adcs-enrollment
 
     - name: adcs-winrm
