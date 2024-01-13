@@ -1,0 +1,17 @@
+- hosts: cl
+  gather_facts: True
+
+  vars_files:
+    - ../vars/vars.yml
+
+  roles:
+    - name: common
+
+    - name: domain-join
+
+    - name: adcs-winrm
+      vars:
+        man_adcs_winrm_is_dc: no
+        man_adcs_winrm_issuer: CN={{ windows_domain_controller_info.dns_domain_name.split(".")[0] }}-WINDOWS-2022-DC-CA, DC={{ windows_domain_controller_info.dns_domain_name.split(".") | join(", DC=") }}
+
+    - name: office365

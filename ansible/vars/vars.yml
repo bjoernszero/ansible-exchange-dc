@@ -1,11 +1,11 @@
-# Ansible (Windows specific)
+# Ansible Settings
 ansible_connection: psrp
 ansible_psrp_cert_validation: ignore
 ansible_psrp_auth: basic
 
 # Domain Controller
 windows_domain_controller_info:
-  ipv4: 192.168.56.105
+  ipv4: 192.168.121.121
   dns_domain_name: c4bag.local
   domain_admin_password: a31557c9-4d4f
   domain_admin_user: administrator@c4bag.local
@@ -23,7 +23,7 @@ windows_domain_controller_info:
     - name: oopsoerge
       password: ergn!ooGpsoerge!$$9eeLLW
 
+# Exchange Server
 microsoft_exchange_server_info:
   version: 2019
-  ipv4: 192.168.56.106
-  iso_image: ExchangeServer2019-x64-CU12.ISO
+  iso: /home/bjoernbrauel/Workspace/linux/ansible-exchange-dc/iso/ExchangeServer2019-x64-CU12.ISO
