@@ -23,7 +23,7 @@ sudo gem install winrm winrm-elevated
 pip install pypsrp --break-system-packages
 ```
 
-- Vagrant Plugin "virtualbox_WSL2" (vagrant install virtualbox_WSL2)
+- Vagrant Plugin "virtualbox_WSL2"
 
 ```bash
 vagrant plugin install virtualbox_WSL2
