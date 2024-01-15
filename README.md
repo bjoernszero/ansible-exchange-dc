@@ -40,7 +40,7 @@ export PATH="$PATH:/mnt/c/Program\ Files/Oracle/VirtualBox"
 Exchange Server 2019 ISO
 
 - Download the Iso Image from Microsoft and copy to ./iso/
-- Adjust the path to the downloaded the ISO image in ./ansible/vars/vars.yml
+- Adjust the path to the downloaded ISO image in ./ansible/vars/vars.yml
 
 ## 2. Create the domain controller
 
