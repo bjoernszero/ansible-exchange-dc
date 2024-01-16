@@ -1,7 +1,7 @@
 ---
 
-- include: create.yml
+- include_tasks: create.yml
 
-- include: users.yml
+- include_tasks: users.yml
 
-- include: reboot.yml 
+- include_tasks: reboot.yml 
